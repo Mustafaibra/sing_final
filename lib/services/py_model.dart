@@ -8,6 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class MYSignModel extends StatefulWidget {
+  static String routeName = "/MYSignModel";
+  
   const MYSignModel({Key? key}) : super(key: key);
 
   @override
@@ -19,6 +21,9 @@ class _MYSignModelState extends State<MYSignModel> {
   bool? isLoading = false;
   String message="";
   final picker=ImagePicker();
+  MYSignModel({required File image}){
+    this.image=image;
+  }
   Future getImage() async{
     final pickedFile = await picker.pickImage(source: ImageSource.gallery,imageQuality: 80);
     if(pickedFile != null){
