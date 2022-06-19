@@ -21,9 +21,11 @@
     </intent>
    </queries>
    <application
-        android:label="sing_final"
+        android:label="Adaptive Speech"
+        android:icon="@mipmap/ic_launcher"
+        
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        >
         <activity
             android:name=".MainActivity"
             android:exported="true"

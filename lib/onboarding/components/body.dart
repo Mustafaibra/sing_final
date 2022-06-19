@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:sing_final/onboarding/components/title.dart';
 import 'package:sing_final/screens/starting_screen.dart';
+import 'package:sing_final/start_screen_new.dart';
 // This is the best practice
 import '../../../components/default_button.dart';
 
@@ -70,7 +71,7 @@ class _BodyState extends State<Body> {
                   DefaultButton(
                     text: "Get Started",
                     press: () {
-                      Navigator.pushNamed(context, getStarted.routeName);
+                      Navigator.pushNamed(context, StartingTany.routeName);
                     },
                   ),
                   Spacer(),

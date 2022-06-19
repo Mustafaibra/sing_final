@@ -16,8 +16,10 @@ class CardsModelNormal extends StatelessWidget {
     final FlutterTts flutterTts = FlutterTts();
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: PreferredSize(
+          
           preferredSize: Size.fromHeight(70),
           child: Container(
             child: Column(

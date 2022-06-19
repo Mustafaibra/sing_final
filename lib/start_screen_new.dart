@@ -5,8 +5,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sing_final/screens/category_screen.dart';
 import 'package:sing_final/screens/chat/chat_logic.dart';
 import 'package:sing_final/services/py_model.dart';
+import 'package:sizer/sizer.dart';
 
 class StartingTany extends StatefulWidget {
+  static String routeName = "/StartingTany";
   const StartingTany({Key? key}) : super(key: key);
 
   @override
@@ -14,17 +16,12 @@ class StartingTany extends StatefulWidget {
 }
 
 class _StartingTanyState extends State<StartingTany> {
-  File? image;
-  final picker=ImagePicker();
-  Future opencamer()async{
-      var picture=await picker.pickImage(source: ImageSource.camera , imageQuality: 80);
-      if(picture != null){
-        image=File(picture.path);
-        setState(() {
-         
-        });
-    }else{print('no image selected');}
-    }
+
+  
+
+
+
+ 
   String personType1 = 'Deaf';
   String personType2 = 'Normal';
   Widget BuildCate(
@@ -36,9 +33,10 @@ class _StartingTanyState extends State<StartingTany> {
   ) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(200)
+        borderRadius: BorderRadius.circular(50)
       ),
-      height: 250,
+      height: height/3,
+      width: width,
       child: Stack(
         children: [
           Positioned(
@@ -47,12 +45,12 @@ class _StartingTanyState extends State<StartingTany> {
             child: Material(
               
               child: Container(
-                height: 230,
-                width: width *.9,
+                height: height/3.2,
+                width: width * .9,
                 decoration: BoxDecoration(
                   
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(50),
+                  borderRadius: BorderRadius.circular(
+                  50
                   ),
                   color: Colors.white,
                 ),
@@ -69,10 +67,10 @@ class _StartingTanyState extends State<StartingTany> {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Container(
-                height: 180,
+                height: 200,
                 width: 150,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(50),
                   image: DecorationImage(
                     image: AssetImage(imageUrl),
                     fit: BoxFit.fill,
@@ -85,15 +83,16 @@ class _StartingTanyState extends State<StartingTany> {
             top: 60,
             left: 200,
             child: Container(
-              height: 160,
-              width: 160,
+              height: height/3.2
+              ,
+              width: width/2.5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 18.sp,
                       color: Color.fromARGB(255, 147, 54, 134),
                       fontWeight: FontWeight.bold,
                     ),
@@ -107,7 +106,7 @@ class _StartingTanyState extends State<StartingTany> {
                       description,
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 14,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -125,270 +124,278 @@ class _StartingTanyState extends State<StartingTany> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(37, 10, 74, 1),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 230,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(50),
-                  ),
-                  color: Color.fromARGB(255, 147, 54, 134)),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 80,
-                    left: 0,
-                    child: Container(
-                      height: 100,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                        ),
-                      ),
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+      return Scaffold(
+        backgroundColor: Color.fromRGBO(37, 10, 74, 1),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 230,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(50),
                     ),
-                  ),
-                  Positioned(
-                    top: 110,
-                    left: 20,
-                    child: Text(
-                      "Chooose an Option",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 147, 54, 134),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10, top: 25),
-                    height: 180,
-                    width: 260,
-                    padding: EdgeInsets.only(
-                      left: 20,
-                      bottom: 20,
-                      right: 20,
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 147, 54, 134),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(80),
-                        ),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Color.fromARGB(255, 147, 54, 134)
-                                .withOpacity(0.3),
-                            offset: new Offset(-10.0, 0.0),
-                            blurRadius: 20,
-                            spreadRadius: 4,
-                          ),
-                        ],
-                      ),
-                      padding: EdgeInsets.all(20),
-                      child: Text(
-                        'We aim to break the barrier',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 147, 54, 134)),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 80,
+                      left: 0,
+                      child: Container(
+                        height: 100,
+                        width: 300,
+                        decoration: BoxDecoration(
                           color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10, top: 25),
-                    height: 150,
-                    width: 250,
-                    padding: EdgeInsets.only(
-                      left: 20,
-                      bottom: 20,
-                      right: 20,
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 147, 54, 134),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(80),
-                        ),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Color.fromARGB(255, 147, 54, 134)
-                                .withOpacity(0.3),
-                            offset: new Offset(-10.0, 0.0),
-                            blurRadius: 20,
-                            spreadRadius: 4,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(50),
+                            bottomRight: Radius.circular(50),
                           ),
-                        ],
-                      ),
-                      padding: EdgeInsets.all(20),
-                      child: Text(
-                        'Communicate easily',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10, top: 25),
-                    height: 180,
-                    width: 260,
-                    padding: EdgeInsets.only(
+                    Positioned(
+                      top: 110,
                       left: 20,
-                      bottom: 20,
-                      right: 20,
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 147, 54, 134),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(80),
-                        ),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Color.fromARGB(255, 147, 54, 134)
-                                .withOpacity(0.3),
-                            offset: new Offset(-10.0, 0.0),
-                            blurRadius: 20,
-                            spreadRadius: 4,
-                          ),
-                        ],
-                      ),
-                      padding: EdgeInsets.all(20),
                       child: Text(
-                        'No room for discrimination',
+                        "Chooose an Option",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
+                          color: Color.fromARGB(255, 147, 54, 134),
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10, top: 25),
-                    height: 150,
-                    width: 250,
-                    padding: EdgeInsets.only(
-                      left: 20,
-                      bottom: 20,
-                      right: 20,
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 147, 54, 134),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(80),
-                        ),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Color.fromARGB(255, 147, 54, 134)
-                                .withOpacity(0.3),
-                            offset: new Offset(-10.0, 0.0),
-                            blurRadius: 20,
-                            spreadRadius: 4,
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10, top: 25),
+                      height: 180,
+                      width: 260,
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        bottom: 20,
+                        right: 20,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 147, 54, 134),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(80),
                           ),
-                        ],
-                      ),
-                      padding: EdgeInsets.all(20),
-                      child: Text(
-                        'Communicate easily',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Color.fromARGB(255, 147, 54, 134)
+                                  .withOpacity(0.3),
+                              offset: new Offset(-10.0, 0.0),
+                              blurRadius: 20,
+                              spreadRadius: 4,
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          'We aim to break the barrier',
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'Raleway',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            //first
-            InkWell(
-              //rabt
-              onTap: () {
-                  Navigator.pushNamed(context, SpeechScreen.routeName);
-              },
-              child: BuildCate(
-                height,
-                width,
-                'assets/Chat1.png',
-                'Voice Chat',
-                'Say what you want to say!',
-              ),
-            ),
-            //second
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => categoriesState(personType1),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10, top: 25),
+                      height: 150,
+                      width: 250,
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        bottom: 20,
+                        right: 20,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 147, 54, 134),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(80),
+                          ),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Color.fromARGB(255, 147, 54, 134)
+                                  .withOpacity(0.3),
+                              offset: new Offset(-10.0, 0.0),
+                              blurRadius: 20,
+                              spreadRadius: 4,
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          'Communicate easily',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'Raleway',
+                          ),
+                        ),
+                      ),
                     ),
-                  );
-              },
-              child: BuildCate(
-                height,
-                width,
-                'assets/signs.png',
-                'Sign Language',
-                'Translation of sign language',
-              ),
-            ),
-            //
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => categoriesState(personType2),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10, top: 25),
+                      height: 180,
+                      width: 260,
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        bottom: 20,
+                        right: 20,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 147, 54, 134),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(80),
+                          ),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Color.fromARGB(255, 147, 54, 134)
+                                  .withOpacity(0.3),
+                              offset: new Offset(-10.0, 0.0),
+                              blurRadius: 20,
+                              spreadRadius: 4,
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          'No room for discrimination',
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'Raleway',
+                          ),
+                        ),
+                      ),
                     ),
-                  );
-              },
-              child: BuildCate(
-                height,
-                width,
-                'assets/words.png',
-                'Word to Sign Language',
-                'translation of Words',
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10, top: 25),
+                      height: 150,
+                      width: 250,
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        bottom: 20,
+                        right: 20,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 147, 54, 134),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(80),
+                          ),
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Color.fromARGB(255, 147, 54, 134)
+                                  .withOpacity(0.3),
+                              offset: new Offset(-10.0, 0.0),
+                              blurRadius: 20,
+                              spreadRadius: 4,
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          'Make your life Easier Now',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'Raleway',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            InkWell(
-              onTap: () {
-                opencamer();
-                Navigator.pushNamed(context, MYSignModel.routeName);
-              },
-              child: BuildCate(
-                height,
-                width,
-                'assets/Chat1.png' /*need to fnide image*/,
-                "Sign Language recognition",
-                'images can be translated!',
+              //first
+              InkWell(
+                //rabt
+                onTap: () {
+                    Navigator.pushNamed(context, SpeechScreen.routeName);
+                },
+                child: BuildCate(
+                  height,
+                  width,
+                  'assets/Chat1.png',
+                  'Voice Chat',
+                  'Say what you want to say!',
+                ),
               ),
-            )
-          ],
+              //second
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => categoriesState(personType1),
+                      ),
+                    );
+                },
+                child: BuildCate(
+                  height,
+                  width,
+                  'assets/signs.png',
+                  'Sign Language',
+                  'Translation of sign language',
+                ),
+              ),
+              //
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => categoriesState(personType2),
+                      ),
+                    );
+                },
+                child: BuildCate(
+                  height,
+                  width,
+                  'assets/words.png',
+                  'Word to Sign Language',
+                  'translation of Words',
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                 
+                  
+                  Navigator.pushNamed(context, MYSignModel.routeName);
+                },
+                child: BuildCate(
+                  height,
+                  width,
+                  'assets/Chat1.png' /*need to fnide image*/,
+                  "Sign Language recognition",
+                  'images can be translated!',
+                ),
+              )
+            ],
+          ),
         ),
-      ),
+      );} 
     );
   }
 }
